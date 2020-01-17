@@ -46,7 +46,8 @@ with open('Дорожно-транспортные происшествия с �
         if index != 0:
             recomend = row[-1]
             cords = [row[-3], row[-2]]
-            if recomend != 'Нет рекомендаций' and recomend[0] != 'С':
+            if recomend != 'Нет рекомендаций' and (int(float(row[-7])) > 5 or int(float(row[-6])) > 10
+                                                   or int(float(row[-7])) + int(float(row[-6])) > 6 and int(float(row[-7])) > 2):
                 icon = folium.Icon(color='green', icon_color='white', icon='exclamation')
                 folium.Marker(location=[cords[-2], cords[-1]],
                               popup=recomend, tooltip='Рекомендация', icon=icon).add_to(concentration_map)
